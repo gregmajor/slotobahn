@@ -13,13 +13,19 @@
 
 {% block page_scripts %}
     <script type="text/javascript">
-        $('#chart-title').text(function(){
+
+        $('#chart-title').text(function () {
             return 'Orders for ' + new Date().getFullYear();
         });
 
-        $.getJSON("orders/chartdata", function (data) {
-            var context = $("#orders-chart").get(0).getContext("2d");
-            var ordersChart = new Chart(context).Line(data, chartOptions);
-        });
+        function update() {
+            $.getJSON("orders/chartdata", function (data) {
+                var context = $("#orders-chart").get(0).getContext("2d");
+                var ordersChart = new Chart(context).Line(data, chartOptions);
+                window.setTimeout(update, 10000);
+            });
+        }
+
+        update();
     </script>
 {% endblock %}

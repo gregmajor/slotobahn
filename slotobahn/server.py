@@ -76,6 +76,10 @@ def requires_authentication(f):
 
     return decorated
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 @app.route("/")
 def index():
     """The main page.
@@ -148,11 +152,11 @@ def consumer_stop():
 
 @app.route("/orders")
 def orders():
-    """Gets the total number of orders.
+    """Gets all orders.
     """
-    order_count = clock.database.order_count
+    orders = clock.database.orders
 
-    return jsonify(order_count=order_count)
+    return jsonify(orders=orders)
 
 @app.route("/orders/chartdata")
 def orders_chartdata():
@@ -177,6 +181,14 @@ def dashboard_ordersforyearandmonth(year, month):
     orders = clock.database.get_orders_for_year_and_month(year, month)
 
     return jsonify(orders_for_year_and_month=orders)
+
+@app.route("/orders/count")
+def order_count():
+    """Gets a count of all orders.
+    """
+    count = clock.database.order_count
+
+    return jsonify(order_count=count)
 
 @app.route("/display/write")
 def display_write():

@@ -53,6 +53,27 @@ class Database(object):
         return chart_data
 
     @property
+    def orders(self):
+        """Gets all orders.
+        """
+        con = db.connect(self._db_file)
+
+        con.row_factory = db.Row
+
+        with con:
+            cur = con.cursor()
+
+            cur.execute("SELECT order_year, order_month, order_count FROM Orders ORDER BY order_year, order_month")
+
+            rows = cur.fetchall()
+
+            result = self._row_to_dict(rows)
+
+            self._logger.info("Orders for Year: %s" % result)
+
+            return result
+
+    @property
     def order_count(self):
         """Gets the order count.
         """

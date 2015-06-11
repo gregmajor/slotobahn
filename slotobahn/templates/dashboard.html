@@ -17,7 +17,7 @@
             return 'Orders for ' + new Date().getFullYear();
         });
 
-        $.getJSON("dashboard/chartdata", function (data) {
+        $.getJSON("orders/chartdata", function (data) {
             var context = $("#orders-chart").get(0).getContext("2d");
             var ordersChart = new Chart(context).Line(data, chartOptions);
         });

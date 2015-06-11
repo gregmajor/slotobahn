@@ -146,31 +146,31 @@ def consumer_stop():
     clock.consumer.stop()
     return jsonify(result='Consumer Stopped!')
 
-@app.route("/dashboard/chartdata")
-def dashboard_chartdata():
-    """Gets the chart data.
-    """
-    chart_data = clock.database.chart_data
-
-    return jsonify(chart_data)
-
-@app.route("/dashboard/ordercount")
-def dashboard_ordercount():
+@app.route("/orders")
+def orders():
     """Gets the total number of orders.
     """
     order_count = clock.database.order_count
 
     return jsonify(order_count=order_count)
 
-@app.route("/dashboard/ordersforyear/<int:year>")
-def dashboard_ordersforyear(year):
+@app.route("/orders/chartdata")
+def orders_chartdata():
+    """Gets the chart data.
+    """
+    chart_data = clock.database.chart_data
+
+    return jsonify(chart_data)
+
+@app.route("/orders/<int:year>")
+def orders_ordersforyear(year):
     """Gets the orders for a particular year.
     """
     orders = clock.database.get_orders_for_year(year)
 
     return jsonify(orders_for_year=orders)
 
-@app.route("/dashboard/ordersforyearandmonth/<int:year>/<int:month>")
+@app.route("/orders/<int:year>/<int:month>")
 def dashboard_ordersforyearandmonth(year, month):
     """Gets the orders for a particular year and month.
     """

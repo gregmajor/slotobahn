@@ -53,6 +53,10 @@ class Configuration(object):
         return self._parser.get('Database', 'SchemaFileName')
 
     @property
+    def simulate(self):
+        return self._parser.getboolean('General', 'Simulate')
+
+    @property
     def static_message(self):
         return self._parser.get('Display', 'StaticMessage')
 

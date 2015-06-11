@@ -1,9 +1,9 @@
-SIMULATE = True
-
 import logging
 
-if SIMULATE is False:
+try:
     import Adafruit_CharLCD as Lcd
+except ImportError:
+    print("Could not import GPIO")
 
 
 class Display(object):
@@ -18,7 +18,7 @@ class Display(object):
 
         self._static_message = self._configuration.static_message
 
-        if SIMULATE is False:
+        if self._configuration.simulate is False:
             self._lcd = Lcd.Adafruit_CharLCDPlate()
 
         self.write_static_message()
@@ -34,7 +34,7 @@ class Display(object):
         """
         self._logger.info("Clearing the display")
 
-        if SIMULATE is False:
+        if self._configuration.simulate is False:
             self._lcd.set_cursor(2, 1)
             self._lcd.message('' * 16)
 
@@ -44,7 +44,7 @@ class Display(object):
         """
         self._logger.info("Writing message: %s" % message)
 
-        if SIMULATE is False:
+        if self._configuration.simulate is False:
             self.clear()
             self.set_cursor(2, 1)
             self._lcd.message(message.center(16, ''))
@@ -54,6 +54,6 @@ class Display(object):
         """
         self._logger.info("Writing static message: %s" % self._static_message)
 
-        if SIMULATE is False:
+        if self._configuration.simulate is False:
             self._lcd.clear()
             self._lcd.message(self._static_message.center(16, ''))

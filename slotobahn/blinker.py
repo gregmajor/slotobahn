@@ -1,10 +1,10 @@
-SIMULATE = True
-
 import time
 import logging
 
-if SIMULATE is False:
+try:
     import RPi.GPIO as GPIO
+except ImportError:
+    print("Could not import GPIO")
 
 
 class Blinker(object):
@@ -20,12 +20,12 @@ class Blinker(object):
         self._pin = self._configuration.blinker_pin
 
         # Use BCM GPIO references rather than physical pin numbers
-        if SIMULATE is False:
+        if self._configuration.simulate is False:
             GPIO.setmode(GPIO.BCM)
 
         # Set the output pin as output and reset to low
         self._logger.info("Setting up GPIO pin %i" % self._pin)
-        if SIMULATE is False:
+        if self._configuration.simulate is False:
             GPIO.setup(self._pin, GPIO.OUT)
             GPIO.output(self._pin, False)
 
@@ -49,13 +49,13 @@ class Blinker(object):
             self._logger.info("Blinking %i times" % count)
 
             # Switch on
-            if SIMULATE is False:
+            if self._configuration.simulate is False:
                 GPIO.output(self._pin, True)
 
             time.sleep(speed)
 
             # Switch off
-            if SIMULATE is False:
+            if self._configuration.simulate is False:
                 GPIO.output(self._pin, False)
 
             time.sleep(speed)

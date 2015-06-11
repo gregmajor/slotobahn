@@ -1,10 +1,10 @@
-SIMULATE = True
-
 import time
 import logging
 
-if SIMULATE is False:
+try:
     import RPi.GPIO as GPIO
+except ImportError:
+    print("Could not import GPIO")
 
 
 class Motor(object):
@@ -19,16 +19,16 @@ class Motor(object):
         self._sequence = None
         self._step_direction = self._configuration.step_direction
         self._step_pins = None
-
+        
         # Use BCM GPIO references rather than physical pin numbers
-        if SIMULATE is False:
+        if self._configuration.simulate is False:
             GPIO.setmode(GPIO.BCM)
 
         # Set all pins as output and reset to low
         for pin in self.step_pins:
             self._logger.info("Setting up GPIO pin %i" % pin)
 
-            if SIMULATE is False:
+            if self._configuration.simulate is False:
                 GPIO.setup(pin, GPIO.OUT)
                 GPIO.output(pin, False)
 
@@ -106,12 +106,12 @@ class Motor(object):
                 if self.sequence[step_counter][pin] != 0:
                     self._logger.info("Step %i - Setting pin %i HIGH" % (step_counter, current_pin))
 
-                if SIMULATE is False:
+                if self._configuration.simulate is False:
                     GPIO.output(current_pin, True)
                 else:
                     self._logger.info("Step %i - Setting pin %i LOW" % (step_counter, current_pin))
 
-                    if SIMULATE is False:
+                    if self._configuration.simulate is False:
                         GPIO.output(current_pin, False)
 
                 step_counter += self.step_direction

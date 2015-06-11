@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block page_header %}<h1 class="page-header">Dashboard</h1>{% endblock %}
+{% block page_header %}<h1 id="chart-title" class="page-header">Orders</h1>{% endblock %}
 
 {% block content %}
     <div>
@@ -10,6 +10,10 @@
 
 {% block page_scripts %}
     <script type="text/javascript">
+        $('#chart-title').text(function(){
+            return 'Orders for ' + new Date().getFullYear();
+        });
+
         $.getJSON("dashboard/chartdata", function (data) {
             var context = $("#orders-chart").get(0).getContext("2d");
             var ordersChart = new Chart(context).Line(data, chartOptions);

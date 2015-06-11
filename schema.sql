@@ -8,6 +8,14 @@ CREATE TABLE IF NOT EXISTS Orders (
   order_count INT
 );
 
+-- SQL Query to get the seed data from production
+--   SELECT YEAR([LastModifiedDateTime]) AS 'Year',
+--          CONVERT(CHAR(3), [LastModifiedDateTime], 0) AS 'MonthName',
+-- 		 COUNT(*) AS 'OrderCount'
+--     FROM [dbo].[Orders]
+-- GROUP BY YEAR([LastModifiedDateTime]), MONTH([LastModifiedDateTime]), CONVERT(CHAR(3), [LastModifiedDateTime], 0)
+-- ORDER BY YEAR([LastModifiedDateTime]), MONTH([LastModifiedDateTime]), CONVERT(CHAR(3), [LastModifiedDateTime], 0)
+
 -- Seed the orders table for 2015
 INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 1, 1327) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2015 AND order_month = 1);
 INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 2, 1026) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2015 AND order_month = 2);

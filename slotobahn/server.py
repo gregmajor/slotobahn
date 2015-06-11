@@ -85,8 +85,9 @@ def index():
     """The main page.
     """
     template_data = {
-        'title': 'Slotobahn',
-        'project_name': 'Slotobahn'
+        'title': configuration.name,
+        'project_name': configuration.name,
+        'order_total': "%i total orders!" % clock.database.order_count
     }
 
     return render_template('dashboard.html', **template_data)

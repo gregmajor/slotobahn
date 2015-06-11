@@ -3,9 +3,10 @@
 -- Create the orders table
 CREATE TABLE IF NOT EXISTS Orders (
   id          INT PRIMARY KEY,
-  order_year  INT,
-  order_month INT,
-  order_count INT
+  order_year  INT NOT NULL,
+  order_month INT NOT NULL,
+  order_count INT NOT NULL,
+  UNIQUE (order_year, order_month) ON CONFLICT IGNORE
 );
 
 -- SQL Query to get the seed data from production
@@ -28,17 +29,17 @@ CREATE TABLE IF NOT EXISTS Orders (
 -- 2015	Mar	933
 
 -- Seed the orders table
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 6, 1968) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2014 AND order_month = 6);
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 7, 3028) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2014 AND order_month = 7);
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 8, 1261) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2014 AND order_month = 8);
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 9, 1021) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2014 AND order_month = 9);
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 10, 1187) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2014 AND order_month = 10);
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 11, 1381) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2014 AND order_month = 11);
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 12, 969) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2014 AND order_month = 12);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 6, 1968);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 7, 3028);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 8, 1261);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 9, 1021);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 10, 1187);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 11, 1381);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2014, 12, 969);
 
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 1, 1327) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2015 AND order_month = 1);
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 2, 1026) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2015 AND order_month = 2);
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 3, 933) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2015 AND order_month = 3);
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 4, 0) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2015 AND order_month = 4);
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 5, 0) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2015 AND order_month = 5);
-INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 6, 0) WHERE NOT EXISTS(SELECT 1 FROM Orders WHERE order_year = 2015 AND order_month = 6);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 1, 1327);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 2, 1026);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 3, 933);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 4, 0);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 5, 0);
+INSERT INTO Orders (order_year, order_month, order_count) VALUES(2015, 6, 0);

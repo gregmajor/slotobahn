@@ -158,9 +158,25 @@ def dashboard_chartdata():
 def dashboard_ordercount():
     """Gets the total number of orders.
     """
-    chart_data = clock.database.order_count
+    order_count = clock.database.order_count
 
-    return jsonify(chart_data)
+    return jsonify(order_count=order_count)
+
+@app.route("/dashboard/ordersforyear/<int:year>")
+def dashboard_ordersforyear(year):
+    """Gets the orders for a particular year.
+    """
+    orders = clock.database.get_orders_for_year(year)
+
+    return jsonify(orders_for_year=orders)
+
+@app.route("/dashboard/ordersforyearandmonth/<int:year>/<int:month>")
+def dashboard_ordersforyearandmonth(year, month):
+    """Gets the orders for a particular year and month.
+    """
+    orders = clock.database.get_orders_for_year_and_month(year, month)
+
+    return jsonify(orders_for_year_and_month=orders)
 
 @app.route("/display/write")
 def display_write():

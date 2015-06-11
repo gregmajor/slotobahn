@@ -40,11 +40,11 @@ class Database(object):
                        "December"],
             "datasets": [{
                 "label": "Orders",
-                "fillColor": "#FFB889",
-                "strokeColor": "#FF6600",
+                "fillColor": "#FF6600",
+                "strokeColor": "#FFFFFF",
                 "pointColor": "rgba(220,220,220,1)",
-                "pointStrokeColor": "#fff",
-                "pointHighlightFill": "#fff",
+                "pointStrokeColor": "#FFFFFF",
+                "pointHighlightFill": "#FFFFFF",
                 "pointHighlightStroke": "rgba(220,220,220,1)",
                 "data": data
             }]

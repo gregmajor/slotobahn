@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block page_header %}<h1 class="page-header">Admin</h1>{% endblock %}
+
+{% block content %}
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a href="#health-check">Health Check</a></li>
+        <li><a href="#settings">Settings</a></li>
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Management <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#blinker-management">Blinker</a></li>
+                <li><a href="#consumer-management">Consumer</a></li>
+                <li><a href="#display-management">Display</a></li>
+                <li><a href="#motor-management">Motor</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="health-check" class="tab-pane fade in active">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Check</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Consumer</td>
+                        <td>Stopped</td>
+                    </tr>
+                    <tr>
+                        <td>Motor</td>
+                        <td>Not Turning</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="settings" class="tab-pane fade">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>IP Address</td>
+                        <td>{{ ip_address }}</td>
+                    </tr>
+                    <tr>
+                        <td>Consumer Exchange</td>
+                        <td>{{ exchange }}</td>
+                    </tr>
+                    <tr>
+                        <td>Consumer Exchange Type</td>
+                        <td>{{ exchange_type }}</td>
+                    </tr>
+                    <tr>
+                        <td>Consumer Queue</td>
+                        <td>{{ queue }}</td>
+                    </tr>
+                    <tr>
+                        <td>Consumer Routing Key</td>
+                        <td>{{ routing_key }}</td>
+                    </tr>
+                    <tr>
+                        <td>Consumer URL</td>
+                        <td>{{ url }}</td>
+                    </tr>
+                    <tr>
+                        <td>Motor Step Direction</td>
+                        <td>{{ step_direction }}</td>
+                    </tr>
+                    <tr>
+                        <td>Motor Step Pins</td>
+                        <td>{{ step_pins }}</td>
+                    </tr>
+                    <tr>
+                        <td>Motor Sequence</td>
+                        <td>{{ sequence }}</td>
+                    </tr>
+                    <tr>
+                        <td>Display Static Message</td>
+                        <td>{{ static_message }}</td>
+                    </tr>
+                    <tr>
+                        <td>Blinker Pin</td>
+                        <td>{{ blinker_pin }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="blinker-management" class="tab-pane fade">
+            <h3 class="sub-header">Blinker Management</h3>
+            <form>
+                <button class="btn btn-default" href="javascript:void();" id="blink">Blink
+                </button>
+            </form>
+        </div>
+        <div id="consumer-management" class="tab-pane fade">
+            <h3 class="sub-header">Consumer Management</h3>
+            <form>
+                <button class="btn btn-default" href="javascript:void();" id="consumer_start">Start
+                    Consumer
+                </button>
+                <button class="btn btn-default" href="javascript:void();" id="consumer_stop">Stop
+                    Consumer
+                </button>
+            </form>
+        </div>
+        <div id="display-management" class="tab-pane fade">
+            <h3 class="sub-header">Write Message</h3>
+            <form>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <input name="message" type="string" class="form-control" id="message"
+                           placeholder="E.g., Hello World!">
+                </div>
+                <button class="btn btn-default" href="javascript:void();" id="display_write_message">Write Message
+                </button>
+            </form>
+        </div>
+        <div id="motor-management" class="tab-pane fade">
+            <h3 class="sub-header">Turn Motor</h3>
+            <form>
+                <div class="form-group">
+                    <label for="waitTime">Wait Time</label>
+                    <input name="wait_time" type="number" class="form-control" id="waitTime"
+                           placeholder="E.g., 20">
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <input name="duration" type="number" class="form-control" id="duration"
+                           placeholder="E.g., 25">
+                </div>
+                <button class="btn btn-default" href="javascript:void();" id="motor_turn">Turn Motor
+                </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

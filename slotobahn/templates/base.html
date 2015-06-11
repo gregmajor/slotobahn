@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <!--    <link rel="icon" href="../favicon.ico">-->
 
-    <title>{{ title }}</title>
+    <title>{{ name }}</title>
 
     {% assets "main_css" %}
         <link rel="stylesheet" href="{{ ASSET_URL }}"/>
@@ -33,7 +33,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">{{ project_name }}</a>
+            <a class="navbar-brand" href="{{ url_for('index') }}">{{ name }}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/about">About</a></li>
+          </ul>
         </div>
         <div>
             <strong><span id="result-alert" class="label label-success navbar-right"></span></strong>

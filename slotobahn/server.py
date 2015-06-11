@@ -76,21 +76,47 @@ def requires_authentication(f):
 
     return decorated
 
+@app.errorhandler(403)
+def forbidden(e):
+    template_data = {
+        'name': configuration.name
+    }
+    return render_template('403.html', **template_data), 403
+
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    template_data = {
+        'name': configuration.name
+    }
+    return render_template('404.html', **template_data), 404
+
+@app.errorhandler(404)
+def internal_error(e):
+    template_data = {
+        'name': configuration.name
+    }
+    return render_template('500.html', **template_data), 500
 
 @app.route("/")
 def index():
     """The main page.
     """
     template_data = {
-        'title': configuration.name,
-        'project_name': configuration.name,
+        'name': configuration.name,
         'order_total': "%i total orders!" % clock.database.order_count
     }
 
     return render_template('dashboard.html', **template_data)
+
+@app.route("/about")
+def about():
+    """The about page.
+    """
+    template_data = {
+        'name': configuration.name
+    }
+
+    return render_template('about.html', **template_data)
 
 @app.route("/admin")
 @requires_authentication
@@ -101,8 +127,6 @@ def admin():
     time_string = now.strftime("%Y-%m-%d %H:%M")
     ip_address = clock.ip_address
     template_data = {
-        'title': 'Slotobahn',
-        'project_name': 'Slotobahn',
         'name': configuration.name,
         'time': time_string,
         'simulate': configuration.simulate,
@@ -115,7 +139,6 @@ def admin():
         'queue': clock.consumer.queue,
         'routing_key': clock.consumer.routing_key,
         'url': clock.consumer.url,
-        'static_message': clock.display.static_message,
         'blinker_pin': clock.blinker.pin,
         'database_file_name': configuration.database_file_name,
         'schema_file_name': configuration.schema_file_name,

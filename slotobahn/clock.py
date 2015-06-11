@@ -107,6 +107,6 @@ class Clock(object):
 
         self._database.record_order(order_year, order_month)
 
-        self._display.write("%i sales" % self._database.order_count)
+        self._display.write("%i orders" % self._database.order_count)
 
         self._motor.turn(20, 50)

@@ -4,15 +4,15 @@
 
 {% block content %}
     <div>
-        <canvas id="sales-chart"></canvas>
+        <canvas id="orders-chart"></canvas>
     </div>
 {% endblock %}
 
 {% block page_scripts %}
     <script type="text/javascript">
         $.getJSON("dashboard/chartdata", function (data) {
-            var context = $("#sales-chart").get(0).getContext("2d");
-            var salesChart = new Chart(context).Line(data, chartOptions);
+            var context = $("#orders-chart").get(0).getContext("2d");
+            var ordersChart = new Chart(context).Line(data, chartOptions);
         });
     </script>
 {% endblock %}

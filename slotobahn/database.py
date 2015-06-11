@@ -109,7 +109,7 @@ class Database(object):
         with con:
             cur = con.cursor()
 
-            cur.execute("SELECT order_count FROM Orders WHERE order_year = %s" % order_year)
+            cur.execute("SELECT order_count FROM Orders WHERE order_year = %s ORDER BY order_month" % order_year)
 
             rows = cur.fetchall()
 

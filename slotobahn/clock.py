@@ -81,25 +81,25 @@ class Clock(object):
         order_year = datetime.today().year
         order_month = datetime.today().month
 
-        if body is not None:
-            payload = json.loads(body)
+        #if body is not None:
+        #    payload = json.loads(body)
 
-            if payload['Order'] is not None:
-                order = payload['Order']
+        #    if payload['Order'] is not None:
+        #        order = payload['Order']
 
-                if order is not None:
+        #        if order is not None:
 
-                    order_date = date_parser.parse(order['OrderDate'])
+        #            order_date = date_parser.parse(order['OrderDate'])
 
-                    self._logger.info('Order date is %s', order_date.strftime("%Y-%m-%d %H:%M:%S"))
+        #            self._logger.info('Order date is %s', order_date.strftime("%Y-%m-%d %H:%M:%S"))
 
-                    order_year = int(order_date.year)
+        #            order_year = int(order_date.year)
 
-                    self._logger.info('Order year is %i', order_year)
+        #            self._logger.info('Order year is %i', order_year)
 
-                    order_month = int(order_date.month)
+        #            order_month = int(order_date.month)
 
-                    self._logger.info('Order month is %i', order_month)
+        #            self._logger.info('Order month is %i', order_month)
 
         self._logger.info('Current order count is %i', self._database.order_count)
 

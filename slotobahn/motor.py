@@ -106,13 +106,13 @@ class Motor(object):
                 if self.sequence[step_counter][pin] != 0:
                     self._logger.info("Step %i - Setting pin %i HIGH" % (step_counter, current_pin))
 
-                if self._configuration.simulate is False:
+                    #if self._configuration.simulate is False:
                     GPIO.output(current_pin, True)
                 else:
                     self._logger.info("Step %i - Setting pin %i LOW" % (step_counter, current_pin))
 
-                    if self._configuration.simulate is False:
-                        GPIO.output(current_pin, False)
+                    #if self._configuration.simulate is False:
+                    GPIO.output(current_pin, False)
 
                 step_counter += self.step_direction
 

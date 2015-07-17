@@ -18,7 +18,7 @@ StaticMessage=Autobahn Orders
 StepDirection=2
 
 [Consumer]
-Url: amqp://clock:rabbitclock@10.0.4.223:5672/real-prod
+Url: amqp://clock:clock@10.0.1.3:5672/%2F
 Exchange: Autobahn.Fulfillment.Contracts.Messages.Ordering.Events:IOrderPlacedEvent
 ExchangeType: fanout
 Queue: Autobahn.Extras.Slotobahn

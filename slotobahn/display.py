@@ -3,7 +3,7 @@ import logging
 try:
     import Adafruit_CharLCD as Lcd
 except ImportError:
-    print("Could not import GPIO")
+    print("Could not import Adafruit CharLCD")
 
 
 class Display(object):
@@ -19,7 +19,7 @@ class Display(object):
         self._static_message = self._configuration.static_message
 
         if self._configuration.simulate is False:
-            self._lcd = Lcd.Adafruit_CharLCDPlate()
+            self._lcd = Lcd.Adafruit_CharLCDPlate(busnum=1)
 
         self.write_static_message()
 
@@ -56,4 +56,5 @@ class Display(object):
 
         if self._configuration.simulate is False:
             self._lcd.clear()
-            self._lcd.message(self._static_message.center(16, ''))
+            centered_message = self._static_message.center(16, ' ')
+            self._lcd.message(centered_message)

@@ -1,0 +1,6 @@
+slotobahn
+flask
+flask-assets
+python-dateutil
+RPi.GPIO
+pika

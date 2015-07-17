@@ -76,7 +76,9 @@ class Clock(object):
         """
         self._logger.info('Received message # %s from %s: %s', basic_deliver.delivery_tag, properties.app_id, body)
 
-        self._blinker.blink()
+        self._motor.turn(20, 50)
+        
+        #self._blinker.blink()
 
         order_year = datetime.today().year
         order_month = datetime.today().month
@@ -106,5 +108,3 @@ class Clock(object):
         self._database.record_order(order_year, order_month)
 
         self._display.write("%i orders" % self._database.order_count)
-
-        self._motor.turn(20, 50)

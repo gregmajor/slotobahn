@@ -21,16 +21,16 @@ class Motor(object):
         self._step_pins = None
         
         # Use BCM GPIO references rather than physical pin numbers
-        if self._configuration.simulate is False:
-            GPIO.setmode(GPIO.BCM)
+        #if self._configuration.simulate is False:
+        GPIO.setmode(GPIO.BCM)
 
         # Set all pins as output and reset to low
         for pin in self.step_pins:
             self._logger.info("Setting up GPIO pin %i" % pin)
 
-            if self._configuration.simulate is False:
-                GPIO.setup(pin, GPIO.OUT)
-                GPIO.output(pin, False)
+            #if self._configuration.simulate is False:
+            GPIO.setup(pin, GPIO.OUT)
+            GPIO.output(pin, False)
 
     @property
     def sequence(self):

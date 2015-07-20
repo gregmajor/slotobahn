@@ -13,4 +13,9 @@ configuration = Configuration()
 
 motor = Motor(configuration)
 
-motor.turn(20, 50)
+try:
+    motor.turn(20, 50)
+except KeyboardInterrupt:
+    print 'Stopped by the user'
+    GPIO.cleanup()
+    sys.exit(0)

@@ -84,6 +84,10 @@ class Motor(object):
           :param int wait_time: How long to wait between steps.
           :param int duration: How long to turn.
         """
+        # THIS CODE DOES NOT BELONG HERE
+        GPIO.setmode(GPIO.BCM)
+        # ---
+        
         # Determine how many steps we must take based on the element count in the self.sequence
         step_count = len(self.sequence) - 1
 

@@ -100,8 +100,7 @@ class Motor(object):
                 # Get the pin
                 current_pin = self.step_pins[pin]
 
-                self._logger.info(step_counter)
-                self._logger.info(pin)
+                self._logger.info("Step counter is at %i" % step_counter)
 
                 # Go high or low on the pin depending on the element value
                 if self.sequence[step_counter][pin] != 0:
@@ -115,17 +114,17 @@ class Motor(object):
                     #if self._configuration.simulate is False:
                     GPIO.output(current_pin, False)
 
-                step_counter += self.step_direction
+            step_counter += self.step_direction
 
-                elapsed += 1
+            elapsed += 1
 
-                # If we reach the end of the self.sequence start again
-                if step_counter >= step_count:
-                    step_counter = 0
-                if step_counter < 0:
-                    step_counter = step_count
+            # If we reach the end of the self.sequence start again
+            if step_counter >= step_count:
+                step_counter = 0
+            if step_counter < 0:
+                step_counter = step_count
 
-                # Wait before moving on to avoid over-driving the controller
-                self._logger.info("Waiting for %f" % wait_time_in_ms)
+            # Wait before moving on to avoid over-driving the controller
+            self._logger.info("Waiting for %f" % wait_time_in_ms)
 
-                time.sleep(wait_time_in_ms)
+            time.sleep(wait_time_in_ms)

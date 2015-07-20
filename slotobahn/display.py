@@ -20,6 +20,8 @@ class Display(object):
 
         if self._configuration.simulate is False:
             self._lcd = Lcd.Adafruit_CharLCDPlate(busnum=1)
+        
+        self._lcd.begin(40, 2)
 
         self.write_static_message()
 

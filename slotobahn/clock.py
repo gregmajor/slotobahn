@@ -76,7 +76,7 @@ class Clock(object):
         """
         self._logger.info('Received message # %s from %s: %s', basic_deliver.delivery_tag, properties.app_id, body)
 
-        self._motor.turn(20, 50)
+        self._motor.turn(15, 50)
         
         #self._blinker.blink()
 

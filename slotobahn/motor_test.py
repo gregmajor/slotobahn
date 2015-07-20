@@ -14,7 +14,7 @@ configuration = Configuration()
 motor = Motor(configuration)
 
 try:
-    motor.turn(20, 50)
+    motor.turn(15, 50)
 except KeyboardInterrupt:
     print 'Stopped by the user'
     GPIO.cleanup()

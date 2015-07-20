@@ -21,8 +21,6 @@ class Display(object):
         if self._configuration.simulate is False:
             self._lcd = Lcd.Adafruit_CharLCDPlate(busnum=1)
         
-        self._lcd.begin(40, 2)
-
         self.write_static_message()
 
     @property
@@ -37,8 +35,8 @@ class Display(object):
         self._logger.info("Clearing the display")
 
         if self._configuration.simulate is False:
-            self._lcd.setCursor(2, 1)
-            self._lcd.message('' * 16)
+            self._lcd.set_cursor(2, 1)
+            self._lcd.message(' ' * 16)
 
     def write(self, message):
         """Writes a message to the display.

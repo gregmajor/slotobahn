@@ -35,7 +35,7 @@ class Display(object):
         self._logger.info("Clearing the display")
 
         if self._configuration.simulate is False:
-            #self._lcd.setCursor(2, 1)
+            self._lcd.setCursor(2, 1)
             self._lcd.message('' * 16)
 
     def write(self, message):
@@ -46,7 +46,7 @@ class Display(object):
 
         if self._configuration.simulate is False:
             self.clear()
-            #self.setCursor(2, 1)
+            self._lcd.setCursor(2, 1)
             centered_message = message.center(16, ' ')
             self._lcd.message(centered_message)
 

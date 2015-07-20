@@ -76,13 +76,6 @@ class Clock(object):
         """
         self._logger.info('Received message # %s from %s: %s', basic_deliver.delivery_tag, properties.app_id, body)
 
-        self._motor.turn(15, 50)
-        
-        #self._blinker.blink()
-
-        order_year = datetime.today().year
-        order_month = datetime.today().month
-
         #if body is not None:
         #    payload = json.loads(body)
 
@@ -103,8 +96,14 @@ class Clock(object):
 
         #            self._logger.info('Order month is %i', order_month)
 
+        #self._blinker.blink()
+        
+        self._motor.turn(15, 50)
+        
         self._logger.info('Current order count is %i', self._database.order_count)
 
+        order_year = datetime.today().year
+        order_month = datetime.today().month
         self._database.record_order(order_year, order_month)
 
         self._display.write("%i orders" % self._database.order_count)

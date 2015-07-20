@@ -1,7 +1,12 @@
 import sys
-import RPi.GPIO as GPIO
+
+try:
+    import RPi.GPIO as GPIO
+except ImportError:
+    print("Could not import GPIO")
 
 from slotobahn import app
+
 
 try:
     print 'Starting server...'

@@ -19,7 +19,7 @@ class Motor(object):
         self._sequence = None
         self._step_direction = self._configuration.step_direction
         self._step_pins = None
-        
+
         # Use BCM GPIO references rather than physical pin numbers
         #if self._configuration.simulate is False:
         GPIO.setmode(GPIO.BCM)
@@ -84,10 +84,7 @@ class Motor(object):
           :param int wait_time: How long to wait between steps.
           :param int duration: How long to turn.
         """
-        # THIS CODE DOES NOT BELONG HERE
-        GPIO.setmode(GPIO.BCM)
-        # ---
-        
+
         # Determine how many steps we must take based on the element count in the self.sequence
         step_count = len(self.sequence) - 1
 
@@ -129,6 +126,6 @@ class Motor(object):
                     step_counter = step_count
 
                 # Wait before moving on to avoid over-driving the controller
-                self._logger.info("Waiting for %i" % wait_time_in_ms)
+                self._logger.info("Waiting for %f" % wait_time_in_ms)
 
                 time.sleep(wait_time_in_ms)

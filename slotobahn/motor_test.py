@@ -7,7 +7,7 @@ LOGGER = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
 log_file_handler = logging.FileHandler('slotobahn.log')
-app.logger.addHandler(log_file_handler)
+#app.logger.addHandler(log_file_handler)
 
 configuration = Configuration()
 
